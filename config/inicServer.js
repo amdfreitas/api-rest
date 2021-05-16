@@ -4,6 +4,6 @@ const  server = require('http');
 
 const inicia = server.createServer(app);
 
-inicia.listen(7577,() => {
+inicia.listen(3000,() => {
     console.log('Servidor esta UP !');
 });
