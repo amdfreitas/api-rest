@@ -1,0 +1,18 @@
+version: "3.7"
+services: 
+  mysql-service:
+    image: "mysql:5.5"
+    container_name: testMy
+    environment:
+        MYSQL_ROOT_PASSWORD: 123456
+    ports: 
+       -  3306:3306  
+    volumes:
+        - "database:/var/lib/mysql"
+    network_mode: host 
+volumes:
+  database:
+    name: database
+   
+
+    
