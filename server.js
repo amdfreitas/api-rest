@@ -7,7 +7,8 @@ app.use(express.json());
 
 
 consign({cwd:'src'})
-    .include('controller')
+    .include('db')
+    .then('controller')
     .then('routas')
     .into(app);
 

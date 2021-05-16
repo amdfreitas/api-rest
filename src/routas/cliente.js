@@ -1,9 +1,8 @@
 
 module.exports = (app) => {
 
-    app.get('/', (req, res) =>{
-         
-    });
+    const client = app.controller.createClient;
+    app.get('/cadastra/cliente', client.cadCliente);
     
 
 }
