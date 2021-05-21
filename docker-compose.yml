@@ -2,9 +2,12 @@ version: "3.7"
 services: 
   mysql-service:
     image: "mysql:5.5"
-    container_name: testMy
+    container_name: myDb
     environment:
         MYSQL_ROOT_PASSWORD: 123456
+        MYSQL_USER: amdfreitas
+        MYSQL_PASSWORD: 123456
+        MYSQL_DATABASE: mercadoDB
     ports: 
        -  3306:3306  
     volumes:

@@ -6,14 +6,13 @@
     "configurations": [
         
         {
-            "type": "node",
+            "name": "Debug node",
+            "processId": "${command:PickProcess}",
             "request": "attach",
+            "type": "node",
             "protocol": "inspector",
-            "restart": true,
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
+            "restart": true
         }
+     
     ]
 }
