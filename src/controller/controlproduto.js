@@ -20,7 +20,7 @@ module.exports = (app)=>{
             },
             allProduto:(req, res) => {
                 const prod = app.model.prod_model;
-                prod.allProduto();
+                prod.allProduto(res);
             },
             homeClient: (req, res) => {
                 const conn = app.db.conection.myconnect();

@@ -48,7 +48,7 @@ module.exports = (app) => {
                 }
 
             },
-         allProduto: async () => {
+         allProduto:  (res) => {
             const sql = 'SELECT * FROM PRODUTO'
             const conn = app.db.conection.myconnect();
                 try {
@@ -56,7 +56,7 @@ module.exports = (app) => {
                         if(erro){
                             throw erro;    
                         }else{
-                            return retorno;
+                            res.status(200).json(retorno);
                         }
                         
                     });
