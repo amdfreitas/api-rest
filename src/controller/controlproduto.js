@@ -1,17 +1,16 @@
 module.exports = (app)=>{
 
+       const prod = app.model.prod_model;
        let funCliente = {
 
             cadProduto: (req, res) => {
 
-                const prod = app.model.prod_model;
                 const p = req.body;
                 prod.insertProduto(p,res);
                             
             },
             updateProduto: (req, res) => {
 
-                const prod = app.model.prod_model;
                 const p = req.body;
 
                 prod.updateProduto(p,res)
@@ -19,8 +18,16 @@ module.exports = (app)=>{
               
             },
             allProduto:(req, res) => {
-                const prod = app.model.prod_model;
                 prod.allProduto(res);
+            },
+
+            searchProduto: (req, res) => {
+                const id = req.params.id;
+                prod.searchProduto(id,res);
+            },
+            deleteProduto: (req,res) => {
+                const p = req.body;
+                prod.deleteProduto(p,res);
             },
             homeClient: (req, res) => {
                 const conn = app.db.conection.myconnect();
