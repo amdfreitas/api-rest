@@ -3,7 +3,7 @@ class Mercadodb {
     init(connect) {
         this.connect = connect;
         this.produto();
-        this.connect.end();
+       
     }
 
     produto() {
@@ -15,7 +15,7 @@ class Mercadodb {
 
         this.connect.query(sql, (erro)=>{
             if(erro){
-                console.log(erro);
+                throw erro;
             }
         });
 

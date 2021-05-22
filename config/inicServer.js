@@ -1,10 +1,8 @@
 const app = require('../server');
 const  server = require('http');
 
-
+  
 const inicia = server.createServer(app);
-
-//configuração  do   banco de dados.
 
 
 

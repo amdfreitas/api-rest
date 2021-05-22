@@ -1,6 +1,7 @@
 module.exports = (app)=>{
 
        const prod = app.model.prod_model;
+       //controller de produto e regras de negocios
        let funCliente = {
 
             cadProduto: (req, res) => {
@@ -20,7 +21,6 @@ module.exports = (app)=>{
             allProduto:(req, res) => {
                 prod.allProduto(res);
             },
-
             searchProduto: (req, res) => {
                 const id = req.params.id;
                 prod.searchProduto(id,res);
@@ -28,14 +28,6 @@ module.exports = (app)=>{
             deleteProduto: (req,res) => {
                 const p = req.body;
                 prod.deleteProduto(p,res);
-            },
-            homeClient: (req, res) => {
-                const conn = app.db.conection.myconnect();
-                const criate = app.db.Tables;
-                criate.init(conn);
-
-                return  res.status(200).send();
-
             }
        } 
 

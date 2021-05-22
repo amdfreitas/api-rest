@@ -1,7 +1,7 @@
 module.exports = (app) => {
 
 let modelo = {
-
+         // model para intaração com banco de dados CRUD.
          insertProduto: (produt,res) => {
             const sql = `INSERT INTO PRODUTO SET ? `
             const conn = app.db.conection.myconnect();
@@ -34,7 +34,7 @@ let modelo = {
               conn.query(sql,[produt, produt.id], (erro,retorno) => {
                         if(erro){
                             res.status(400).json(erro);
-                            throw erro;
+                            throw  new Error('Erro de select no banco !!!');   
                         }else{
                             
                             res.status(200).json(retorno);
@@ -55,7 +55,8 @@ let modelo = {
                 try {
                     conn.query(sql, (erro,retorno) => {
                         if(erro){
-                            throw erro;    
+                            res.status(400).json(erro);   
+                            throw  new Error('Erro de select no banco !!!');    
                         }else{
                             res.status(200).json(retorno);
                         }
@@ -81,7 +82,7 @@ let modelo = {
                     conn.query(sql,[id], (error,retorno) => {
 
                         if(error){
-                            throw error;
+                            throw  new Error('Erro de select no banco !!!');   
                         }else{
                             res.status(200).json(retorno);
                         }
