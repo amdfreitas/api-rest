@@ -4,30 +4,39 @@ module.exports = (app)=>{
        //controller de produto e regras de negocios
        let funCliente = {
 
-            cadProduto: (req, res) => {
+            cadProduto: async (req, res) => {
 
                 const p = req.body;
-                prod.insertProduto(p,res);
+                await prod.insertProduto(p)
+                        .then((data) => res.status(201).json(data))
+                        .catch((error) => res.status(400).json(error));
                             
             },
-            updateProduto: (req, res) => {
+            updateProduto: async (req, res) => {
 
                 const p = req.body;
-
-                prod.updateProduto(p,res)
+                await prod.updateProduto(p)
+                    .then((data) => res.status(200).json(data))
+                    .catch((error) => res.status(400).json(error));
                   
               
             },
-            allProduto:(req, res) => {
-                prod.allProduto(res);
+            allProduto: async (req, res) => {
+                await prod.allProduto()
+                    .then((data) => res.status(200).json(data))
+                    .catch((error) => res.status(400).json(error));
             },
-            searchProduto: (req, res) => {
+            searchProduto: async  (req, res) => {
                 const id = req.params.id;
-                prod.searchProduto(id,res);
+               await prod.searchProduto(id)
+                    .then((data) => res.status(200).json(data))
+                    .catch((error) => res.status(400).json(error));  
             },
-            deleteProduto: (req,res) => {
+            deleteProduto: async  (req,res) => {
                 const p = req.body;
-                prod.deleteProduto(p,res);
+               await prod.deleteProduto(p)
+                    .then((data) => res.status(200).json(data))
+                    .catch((error) => res.status(400).json(error));
             }
        } 
 

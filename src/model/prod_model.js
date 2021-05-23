@@ -2,120 +2,47 @@ module.exports = (app) => {
 
 let modelo = {
          // model para intaração com banco de dados CRUD.
-         insertProduto: (produt,res) => {
+         insertProduto:  (produt) => {
             const sql = `INSERT INTO PRODUTO SET ? `
-            const conn = app.db.conection.myconnect();
-             try {
-                conn.query(sql,produt, (erro,retorno) => {
-                    if(erro){
-                        res.status(400).json(erro);
-                        throw erro;
-                    }else{
-                        
-                        res.status(201).json(retorno);
-                    }
-                    
-                });
+            const repost  = app.db.repository.query;
 
-             } catch (error) {
-
-                console.log(error); 
-
-             }finally{
-
-                conn.end();
-             }
+            return repost(sql,produt);
 
          },
-         updateProduto:  (produt, res) =>{
+         updateProduto:  (produt) =>{
             const sql = `UPDATE PRODUTO SET ? WHERE id = ?`;
-            const conn = app.db.conection.myconnect();
-                try {
-              conn.query(sql,[produt, produt.id], (erro,retorno) => {
-                        if(erro){
-                            res.status(400).json(erro);
-                            throw  new Error('Erro de select no banco !!!');   
-                        }else{
-                            
-                            res.status(200).json(retorno);
-                        }
-                        
-                    });
+            const prod = [produt, produt.id];
+            const repost  = app.db.repository.query;
 
-                }finally{
-
-                    conn.end();
-                }
+            return repost(sql,prod);
 
             },
-         allProduto:  (res) => {
+         allProduto:  () => {
             const sql = 'SELECT * FROM PRODUTO';
-            const conn = app.db.conection.myconnect();
 
-                try {
-                    conn.query(sql, (erro,retorno) => {
-                        if(erro){
-                            res.status(400).json(erro);   
-                            throw  new Error('Erro de select no banco !!!');    
-                        }else{
-                            res.status(200).json(retorno);
-                        }
-                        
-                    });
+            const repost  = app.db.repository.query;
 
-                } catch (error) {
-
-                    console.log(error); 
-
-                }finally{
-
-                    conn.end();
-                }
-
+            return repost(sql);
+       
          },
-         searchProduto: (id, res) => {
+         searchProduto: (id) => {
 
                 const sql = 'SELECT * FROM PRODUTO WHERE id = ?';
-                const conn = app.db.conection.myconnect();
-                try {
+                
+                const repost  = app.db.repository.query;
 
-                    conn.query(sql,[id], (error,retorno) => {
-
-                        if(error){
-                            throw  new Error('Erro de select no banco !!!');   
-                        }else{
-                            res.status(200).json(retorno);
-                        }
-
-                        });
-
-                }catch (error) {
-
-                    console.log(error); 
-                } finally { conn.end();}
+                return repost(sql,id);
+              
           
              },
-         deleteProduto: (produt,res) => {
+         deleteProduto: (produt) => {
 
             const sql = 'DELETE FROM PRODUTO WHERE id = ?';
-            const conn = app.db.conection.myconnect();
-            try {
+            const repost  = app.db.repository.query;
 
-                conn.query(sql,[produt.id], (error,retorno) => {
-
-                    if(error){
-                        throw error;
-                    }else{
-                        res.status(200).json(retorno);
-                    }
-
-                    });
-
-            }catch (error) {
-                console.log(error); 
-            } finally { conn.end();}
-
-         }    
+            return repost(sql,produt.id);
+         
+            }    
 
          }
 

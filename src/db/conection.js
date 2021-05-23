@@ -6,7 +6,6 @@ module.exports = (app) => {
 
         myconnect: () => {
             return factoryConnect();
-
         }
      
     }
